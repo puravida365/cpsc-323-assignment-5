@@ -1,10 +1,12 @@
 //==============================================================
-//	Name:    	Harry Mora
+//	Name:    	Samar Alqayidi, Harry Mora
 //	Course:  	CPSC 323
-//	Project: 	3
-//	Date:    	September 29, 2013
+//	Project: 	5
+//	Date:    	October 17, 2013
 //	Professor:  Ray Ahmadnia
-//	Purpose: 	Read from data.txt, tokenize and analyze content
+//	Purpose: 	Program reads c++ code from a file and removes 
+//              comment lines, unwanted spaces, then places a 
+//              space between all tokens
 //==============================================================
 
 #include <iostream>
