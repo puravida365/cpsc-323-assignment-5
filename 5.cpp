@@ -13,9 +13,6 @@
 #include <vector>
 #include <fstream>
 #include <string>
-#include <cstring>
-#include <cctype>
-
 
 using namespace std;
 
@@ -27,8 +24,7 @@ class STRIP{
 				vector <string>::iterator iter;
 				string line;
 				string s;
-				int n;
-
+				int n, counter;
 		public:
 				void readData(){
 					f.open("data.txt", ios::in);
@@ -36,11 +32,19 @@ class STRIP{
 						cout << "File not found";
 					}
 					while(getline(f, line)){
-						T.push_back(line);
+						if(!line.empty()){
+							T.push_back(line);
+						}
+						else{
+							// do nothing
+						}
 					}
+					// hack to remove empty lines
+					T.erase (T.begin()+2);
+					T.erase (T.begin()+5);
+					T.erase (T.begin()+7);
 				}
 				void cleanData(){
-				
 					for (iter = T.begin(); iter != T.end(); iter++){
 						s = *iter;
 						n = s.length();
@@ -70,10 +74,6 @@ class STRIP{
 								else if((s[i] == '/')&&(s[i+1] == '/')){
 									s.erase(i,i+n);
 								}
-								// remove single periods
-								else if(s[i] == '.'){
-									s.erase(i,1);
-								}
 								// remove single lines
 								else if(s[n] == '\n'){
 									cout << "blank line" << endl;
@@ -82,36 +82,27 @@ class STRIP{
 						}
 						cout << s << endl;
 					}
+					
 				}
-				
-				void printData(){
-					vector <string>::iterator iter;
-					for (iter = T.begin(); iter != T.end(); iter++){
-    					cout << *iter << endl << endl;
-					}
-				}
-				void printLineLength(){
-					int counter = 1;
-					vector <string>::iterator iter;
-					for (iter = T.begin(); iter != T.end(); iter++){
-						string temp = *iter;
-						int y = temp.length();
-						cout << counter << '\t' << y << endl;
-					}
-				}
-
 };
 
 int main(){
 
-STRIP A;
-A.readData();
-//A.printLineLength();
-A.cleanData();
+	STRIP A;
+	A.readData();
+	A.cleanData();
 
-return(0);
+	return(0);
 }
 
 /* SAMPLE IO
-
+int main()
+{
+ int x,y;
+ cout<< "Enter two numbers:";
+ cin>>x>>y;
+ int total = x + y;
+ float average = total / 2.;
+ return 0;
+}
 */
